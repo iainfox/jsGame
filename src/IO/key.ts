@@ -1,21 +1,21 @@
-import createKeyDict from './keyPressed.ts';
-import { maps } from './keyMap.ts'
+import createKeyDict from "./keyPressed.ts";
+import { maps } from "./keyMap.ts";
 
 export class Key {
 	constructor() {
 		this.keys = createKeyDict();
 		this.type = "key";
 		this.dataType = "key";
-		
+
 		document.addEventListener("keydown", (event) => {
 			this.keys[event.code] = true;
 		});
-		
+
 		document.addEventListener("keyup", (event) => {
 			this.keys[event.code] = false;
 		});
 	}
-	
+
 	getPressed() {
 		return this.keys;
 	}
@@ -23,20 +23,22 @@ export class Key {
 	getMods() {
 		const mods = [];
 
-		Object.keys(maps.ModKeyMap).forEach(mod => {
+		Object.keys(maps.ModKeyMap).forEach((mod) => {
 			if (this.keys[mod] === true) {
-				mods.push(mod)
+				mods.push(mod);
 			}
 		});
-	  
+
 		return mods;
 	}
 
 	name(keyCode) {
-		return Object.keys(maps.KeyMap).find(key => maps.KeyMap[key] === keyCode) || null;
+		return Object.keys(maps.KeyMap).find((key) =>
+			maps.KeyMap[key] === keyCode
+		) || null;
 	}
 
 	keyCode(name) {
-		return maps.KeyMap[name] || null
+		return maps.KeyMap[name] || null;
 	}
 }

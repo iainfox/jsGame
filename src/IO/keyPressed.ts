@@ -88,6 +88,6 @@ export default function createKeyDict() {
 		"NumpadSubtract": false,
 		"NumpadDecimal": false,
 		"NumpadDivide": false,
-		"NumpadEqual": false
+		"NumpadEqual": false,
 	};
 }

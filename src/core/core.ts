@@ -3,5 +3,5 @@ import { Color } from "./color.ts";
 
 export const core = {
 	Rect,
-	Color
+	Color,
 };

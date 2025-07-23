@@ -1,6 +1,6 @@
 # JsGame
 
-A JavaScript library inspired by Pygame.  
+A JavaScript library inspired by Pygame.\
 This project recreates common Pygame functions for drawing and input handling.
 
 ## Table of contents
@@ -14,18 +14,18 @@ This project recreates common Pygame functions for drawing and input handling.
 6. [Event (pygame.event)](#pygameevent)
 7. [Display (pygame.display)](#pygamedisplay)
 8. [Mixer (pygame.mixer)](#pygamemixer)
-8. [Mouse (pygame.mouse)](#pygamemouse)
-8. [Time (pygame.time)](#pygametime)
+9. [Mouse (pygame.mouse)](#pygamemouse)
+10. [Time (pygame.time)](#pygametime)
 
 ## Implemented Functions
+
 ### Legend
-✅ - Implemented<br>
-🟧 - Working on it<br>
-🔳 - Unimplemented<br>
-❌ - Won't be implemented<br>
-🔳/❌ - Undecided<br>
+
+✅ - Implemented<br> 🟧 - Working on it<br> 🔳 - Unimplemented<br> ❌ - Won't be
+implemented<br> 🔳/❌ - Undecided<br>
 
 ### top level pygame packages (pygame.*)
+
 ```
 ✅ - pygame.init
 creates canvas if one doesn't exist and returns its context 2d
@@ -62,6 +62,7 @@ Encodes a Unicode or bytes object as a file system path
 ```
 
 ### pygame.draw
+
 ```
 ✅ - draw.rect
 Draws a rectangle
@@ -92,6 +93,7 @@ Draws multiple contiguous straight antialiased line segments
 ```
 
 ### pygame.key
+
 ```
 ❌ - key.get_focused
 true if the display is receiving keyboard input from the system
@@ -128,6 +130,7 @@ controls the position of the candidate list
 ```
 
 ### pygame.event
+
 ```
 🔳/❌ - event.pump
 internally process pygame event handlers
@@ -182,6 +185,7 @@ pygame object for representing events
 ```
 
 ### pygame.display
+
 ```
 🔳 - display.init
 Initialize the display module
@@ -269,6 +273,7 @@ Set whether the screensaver may run
 ```
 
 ### pygame.mixer
+
 ```
 🔳 - mixer.init
 initialize the mixer module
@@ -320,6 +325,7 @@ Create a Channel object for controlling playback
 ```
 
 ### pygame.mouse
+
 ```
 🔳 - mouse.get_pressed
 get the state of the mouse buttons
@@ -350,6 +356,7 @@ get the current mouse cursor
 ```
 
 ### pygame.time
+
 ```
 🔳 - time.get_ticks
 get the time in milliseconds

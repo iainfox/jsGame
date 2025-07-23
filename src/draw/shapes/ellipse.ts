@@ -1,10 +1,10 @@
-import { core } from "../../core/core.ts"
+import { core } from "../../core/core.ts";
 
-export function ellipse(ctx, color, rect, width=0) {
+export function ellipse(ctx, color, rect, width = 0) {
 	ctx.lineWidth = width;
 	ctx.fillStyle = new core.Color(color).hex3;
 	ctx.strokeStyle = new core.Color(color).hex3;
-	
+
 	if (width < 0) {
 		return core.Rect([rect.left, rect.top], [0, 0]);
 	}

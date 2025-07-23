@@ -1,6 +1,6 @@
-import { core } from "../../core/core.ts"
+import { core } from "../../core/core.ts";
 
-export function arc(ctx, color, rect, startAngle, stopAngle, width=1) {
+export function arc(ctx, color, rect, startAngle, stopAngle, width = 1) {
 	if (width <= 0) {
 		return new core.Rect([rect.left, rect.top], [0, 0]);
 	}
@@ -10,7 +10,15 @@ export function arc(ctx, color, rect, startAngle, stopAngle, width=1) {
 	ctx.strokeStyle = new core.Color(color).hex3;
 
 	ctx.beginPath();
-	ctx.arc(rect.left, rect.top, rect.width, rect.height, 0, startAngle, stopAngle);
+	ctx.arc(
+		rect.left,
+		rect.top,
+		rect.width,
+		rect.height,
+		0,
+		startAngle,
+		stopAngle,
+	);
 	ctx.stroke();
 
 	return new core.Rect([rect.left, rect.top], [rect.width, rect.height]);

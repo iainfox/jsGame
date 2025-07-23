@@ -19,11 +19,11 @@ class JSGAME {
 		canvas.width = window.innerWidth;
 		canvas.height = window.innerHeight;
 		this.initialized = true;
-		return canvas.getContext('2d');
+		return canvas.getContext("2d");
 	}
 
 	quit(close) {
-		this.quitCallbacks.forEach(callback => {
+		this.quitCallbacks.forEach((callback) => {
 			callback();
 		});
 		if (close) {
@@ -36,11 +36,11 @@ class JSGAME {
 	}
 
 	registerQuit(callback) {
-		if (!typeof(callback) === "function") {
-			throw new Error("\"callback\" argument must be a function")
+		if (!typeof callback === "function") {
+			throw new Error('"callback" argument must be a function');
 		}
-		this.quitCallbacks.push(callback)
+		this.quitCallbacks.push(callback);
 	}
-};
+}
 
-export const jsgame = new JSGAME()
+export const jsgame = new JSGAME();

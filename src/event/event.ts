@@ -60,43 +60,44 @@ export class event {
 			"DROPCOMPLETE": 4099,
 			"AUDIODEVICEADDED": 4352,
 			"AUDIODEVICEREMOVED": 4353,
-			"USEREVENT": 32866
+			"USEREVENT": 32866,
 		};
-        
-        window.addEventListener('mousemove', this.push(1024));
-        window.addEventListener('mousedown', this.push(1025));
-        window.addEventListener('mouseup', this.push(1026));
-        window.addEventListener('wheel', this.push(1076));
 
-        window.addEventListener('keydown', this.push(798));
-        window.addEventListener('keyup', this.push(769));
+		window.addEventListener("mousemove", this.push(1024));
+		window.addEventListener("mousedown", this.push(1025));
+		window.addEventListener("mouseup", this.push(1026));
+		window.addEventListener("wheel", this.push(1076));
 
-        window.addEventListener('touchstart', this.push(1792));
-        window.addEventListener('touchmove', this.push(1794));
-        window.addEventListener('touchend', this.push(1793));
+		window.addEventListener("keydown", this.push(798));
+		window.addEventListener("keyup", this.push(769));
 
-        window.addEventListener('beforeunload', this.push(256));
-        document.addEventListener('visibilitychange', () => {
-            this.visible = !this.visible;
-            this.push({ id: this.visible ? 513 : 514 });
-        });
+		window.addEventListener("touchstart", this.push(1792));
+		window.addEventListener("touchmove", this.push(1794));
+		window.addEventListener("touchend", this.push(1793));
 
-        window.addEventListener('blur', this.push(1));
-        window.addEventListener('focus', this.push(1));
+		window.addEventListener("beforeunload", this.push(256));
+		document.addEventListener("visibilitychange", () => {
+			this.visible = !this.visible;
+			this.push({ id: this.visible ? 513 : 514 });
+		});
 
-        window.addEventListener('dragstart', this.push(4098));
-        window.addEventListener('dragend', this.push(4099));
-        window.addEventListener('drop', this.push(4096));
+		window.addEventListener("blur", this.push(1));
+		window.addEventListener("focus", this.push(1));
+
+		window.addEventListener("dragstart", this.push(4098));
+		window.addEventListener("dragend", this.push(4099));
+		window.addEventListener("drop", this.push(4096));
 
 		this.queue = [];
-        this.waitCb = [];
-        this.visible = true;
-        this.blockedTypes = new Set();
-
+		this.waitCb = [];
+		this.visible = true;
+		this.blockedTypes = new Set();
 	}
 
 	push(event) {
-		let eventId = event && typeof event === 'object' && 'id' in event ? event.id : event;
+		let eventId = event && typeof event === "object" && "id" in event
+			? event.id
+			: event;
 		if (!this.blockedTypes.has(eventId)) {
 			this.queue.push(event);
 		}
@@ -112,7 +113,9 @@ export class event {
 
 	getEventName(id) {
 		if (Object.values(this.nameList).includes(id)) {
-			return Object.keys(this.nameList).find(key => this.nameList[key] === id);
+			return Object.keys(this.nameList).find((key) =>
+				this.nameList[key] === id
+			);
 		} else {
 			throw new Error("Unknown event id");
 		}
@@ -125,53 +128,53 @@ export class event {
 	}
 
 	poll() {
-	    return this.queue.shift() || 0;
+		return this.queue.shift() || 0;
 	}
 
 	peek(eventType = undefined) {
 		if (eventType === undefined) {
 			return this.queue.length > 0;
 		}
-	
-		return this.queue[eventType] && true || false 
+
+		return this.queue[eventType] && true || false;
 	}
 
-    clear(eventType = undefined) {
-        if (eventType === undefined) {
-            this.queue.length = 0;
-        } else {
-            const types = Array.isArray(eventType) ? eventType : [eventType];
-            this.queue = this.queue.filter(event => !types.includes(event));
-        }
-    }
+	clear(eventType = undefined) {
+		if (eventType === undefined) {
+			this.queue.length = 0;
+		} else {
+			const types = Array.isArray(eventType) ? eventType : [eventType];
+			this.queue = this.queue.filter((event) => !types.includes(event));
+		}
+	}
 
-    setBlocked(eventType = undefined) {
-        if (eventType === undefined || eventType === null) {
-            Object.values(this.nameList).forEach(id => this.blockedTypes.add(id));
-        } else if (Array.isArray(eventType)) {
-            eventType.forEach(type => this.blockedTypes.add(type));
-        } else {
-            this.blockedTypes.add(eventType);
-        }
-    }
+	setBlocked(eventType = undefined) {
+		if (eventType === undefined || eventType === null) {
+			Object.values(this.nameList).forEach((id) => this.blockedTypes.add(id));
+		} else if (Array.isArray(eventType)) {
+			eventType.forEach((type) => this.blockedTypes.add(type));
+		} else {
+			this.blockedTypes.add(eventType);
+		}
+	}
 
-    setAllowed(eventType = undefined) {
-        if (eventType === undefined || eventType === null) {
-            this.blockedTypes.clear();
-        } else if (Array.isArray(eventType)) {
-            eventType.forEach(type => this.blockedTypes.delete(type));
-        } else {
-            this.blockedTypes.delete(eventType);
-        }
-    }
+	setAllowed(eventType = undefined) {
+		if (eventType === undefined || eventType === null) {
+			this.blockedTypes.clear();
+		} else if (Array.isArray(eventType)) {
+			eventType.forEach((type) => this.blockedTypes.delete(type));
+		} else {
+			this.blockedTypes.delete(eventType);
+		}
+	}
 
-    getBlocked(eventType) {
-        if (eventType === undefined || eventType === null) {
-            return false;
-        }
-        if (Array.isArray(eventType)) {
-            return eventType.some(type => this.blockedTypes.has(type));
-        }
-        return this.blockedTypes.has(eventType);
-    }
+	getBlocked(eventType) {
+		if (eventType === undefined || eventType === null) {
+			return false;
+		}
+		if (Array.isArray(eventType)) {
+			return eventType.some((type) => this.blockedTypes.has(type));
+		}
+		return this.blockedTypes.has(eventType);
+	}
 }

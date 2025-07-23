@@ -3,10 +3,8 @@ export class Color {
 		let r, g, b;
 
 		if (args.length === 1 && Array.isArray(args[0])) {
-			[r, g, b] = args[0].map(v => Math.max(0, Math.min(255, v)));
-		}
-
-		else if (args.length === 1 && typeof args[0] === "string") {
+			[r, g, b] = args[0].map((v) => Math.max(0, Math.min(255, v)));
+		} else if (args.length === 1 && typeof args[0] === "string") {
 			const hex = args[0];
 			switch (hex.length) {
 				case 7:
@@ -30,16 +28,17 @@ export class Color {
 					b = parseInt(hex[2] + hex[2], 16);
 					break;
 				default:
-					throw new Error("Unknown color format. Use [R,G,B], \"HEX\", or 3-digit \"HEX\".");
+					throw new Error(
+						'Unknown color format. Use [R,G,B], "HEX", or 3-digit "HEX".',
+					);
 			}
-		
 		} else if (args.length === 3) {
-			[r, g, b] = args[0].map(v => Math.max(0, Math.min(255, v)));
+			[r, g, b] = args[0].map((v) => Math.max(0, Math.min(255, v)));
 		} else {
 			throw new Error("Invalid color input.");
 		}
 
-		const toHexDigit = v => Math.round(v / 17).toString(16);
+		const toHexDigit = (v) => Math.round(v / 17).toString(16);
 		this.hex3 = `#${toHexDigit(r)}${toHexDigit(g)}${toHexDigit(b)}`;
 	}
 }

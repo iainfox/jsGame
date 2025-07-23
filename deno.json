@@ -1,11 +1,11 @@
 {
-    "tasks": {
-        "dev": "deno run --watch main.ts"
-    },
-    "imports": {
-        "@std/assert": "jsr:@std/assert@1"
-    },
-    "fmt": {
-        "useTabs": true
-    }
+	"tasks": {
+		"dev": "deno run --watch main.ts"
+	},
+	"imports": {
+		"@std/assert": "jsr:@std/assert@1"
+	},
+	"fmt": {
+		"useTabs": true
+	}
 }
