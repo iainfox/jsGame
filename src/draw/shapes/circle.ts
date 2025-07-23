@@ -1,4 +1,4 @@
-import { core } from "../../core/core.js"
+import { core } from "../../core/core.ts"
 
 export function circle(ctx, color, center, radius, width=0, draw_top_right=false, draw_top_left=false, draw_bottom_left=false, draw_bottom_right=false) {
 	ctx.fillStyle = new core.Color(color).hex3;

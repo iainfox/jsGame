@@ -1,5 +1,5 @@
-import { Rect } from "./rect.js";
-import { Color } from "./color.js";
+import { Rect } from "./Rect.ts";
+import { Color } from "./color.ts";
 
 export const core = {
 	Rect,

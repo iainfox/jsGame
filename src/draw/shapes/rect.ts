@@ -1,4 +1,4 @@
-import { core } from "../../core/core.js"
+import { core } from "../../core/core.ts"
 
 export function rect(ctx, color, rect, width = 0,
 	borderRadius = 0, borderTopLeftRadius = -1, borderTopRightRadius = -1, 

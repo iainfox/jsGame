@@ -1,4 +1,4 @@
-import { core } from "../../core/core.js"
+import { core } from "../../core/core.ts"
 
 export function polygon(ctx, color, points, width=0) {
 	if (!Array.isArray(points)) {

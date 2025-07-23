@@ -1,4 +1,4 @@
-import { core } from "../../core/core.js"
+import { core } from "../../core/core.ts"
 
 export function lines(ctx, color, closed, points, width=1) {
 	if (!Array.isArray(points)) {

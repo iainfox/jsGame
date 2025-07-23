@@ -1,4 +1,4 @@
-import { core } from "../../core/core.js"
+import { core } from "../../core/core.ts"
 
 export function arc(ctx, color, rect, startAngle, stopAngle, width=1) {
 	if (width <= 0) {

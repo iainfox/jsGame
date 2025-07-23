@@ -1,5 +1,5 @@
-import { core } from "./core/core.js";
-import { draw } from "./draw/draw.js";
+import { core } from "./core/core.ts";
+import { draw } from "./draw/draw.ts";
 
 class JSGAME {
 	constructor() {

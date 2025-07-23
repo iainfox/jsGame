@@ -1,4 +1,4 @@
-import { core } from "../../core/core.js"
+import { core } from "../../core/core.ts"
 
 export function line(ctx, color, startPos, endPos, width=1) {
 

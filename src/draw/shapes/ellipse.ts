@@ -1,4 +1,4 @@
-import { core } from "../../core/core.js"
+import { core } from "../../core/core.ts"
 
 export function ellipse(ctx, color, rect, width=0) {
 	ctx.lineWidth = width;

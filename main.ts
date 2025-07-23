@@ -1,4 +1,4 @@
-import { jsgame } from "./src/jsgame.js"
+import { jsgame } from "./src/jsgame.ts"
 
 const canvas = document.getElementById("canvas")
 

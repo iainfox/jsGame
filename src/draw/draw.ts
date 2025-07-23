@@ -1,9 +1,9 @@
-import { rect } from './shapes/rect.js';
-import { line } from './shapes/line.js';
-import { lines } from './shapes/lines.js';
-import { circle } from './shapes/circle.js';
-import { polygon } from './shapes/polygon.js';
-import { ellipse } from './shapes/ellipse.js';
+import { rect } from './shapes/rect.ts';
+import { line } from './shapes/line.ts';
+import { lines } from './shapes/lines.ts';
+import { circle } from './shapes/circle.ts';
+import { polygon } from './shapes/polygon.ts';
+import { ellipse } from './shapes/ellipse.ts';
 
 export const draw = {
 	rect,
