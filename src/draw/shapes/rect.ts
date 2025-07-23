@@ -4,7 +4,7 @@ import { Rect } from "../../core/Rect.ts";
 
 export function rect(
 	ctx: CanvasRenderingContext2D,
-	color: Color = new Color(0, 0, 0),
+	color: Color | string | number[] = new Color(0, 0, 0),
 	rect: Rect,
 	width: number = 0,
 	borderRadius: number = 0,
@@ -13,8 +13,25 @@ export function rect(
 	borderBottomLeftRadius: number = 0,
 	borderBottomRightRadius: number = 0,
 ) {
-	ctx.fillStyle = color.hex3;
-	ctx.strokeStyle = color.hex3;
+	let colorObj: Color;
+	if (color instanceof Color) {
+		colorObj = color;
+	} else if (typeof color === "string") {
+		colorObj = new Color(color);
+	} else if (Array.isArray(color)) {
+		if (color.length === 3) {
+			colorObj = new Color(color[0], color[1], color[2]);
+		} else if (color.length === 1 && typeof color[0] === "string") {
+			colorObj = new Color(color[0]);
+		} else {
+			colorObj = new Color(0, 0, 0);
+		}
+	} else {
+		colorObj = new Color(0, 0, 0);
+	}
+
+	ctx.fillStyle = colorObj.hex3;
+	ctx.strokeStyle = colorObj.hex3;
 	if (width == 0) {
 		ctx.fillRect(rect.left, rect.top, rect.width, rect.height);
 
