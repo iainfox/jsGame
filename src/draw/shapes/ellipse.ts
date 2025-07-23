@@ -1,19 +1,26 @@
+import { Color } from "../../core/color.ts";
 import { core } from "../../core/core.ts";
+import { Rect } from "../../core/Rect.ts";
 
-export function ellipse(ctx, color, rect, width = 0) {
+export function ellipse(
+    ctx: CanvasRenderingContext2D,
+    color: Color,
+    rect: Rect,
+    width: number = 0
+) {
 	ctx.lineWidth = width;
-	ctx.fillStyle = new core.Color(color).hex3;
-	ctx.strokeStyle = new core.Color(color).hex3;
+	ctx.fillStyle = color.hex3;
+	ctx.strokeStyle = color.hex3;
 
 	if (width < 0) {
-		return core.Rect([rect.left, rect.top], [0, 0]);
+		return new core.Rect([rect.left, rect.top], [0, 0]);
 	}
 
-	let centerX = rect.left;
-	let centerY = rect.top;
+	const centerX = rect.left;
+	const centerY = rect.top;
 
-	let rWidth = rect.width;
-	let rHeight = rect.height;
+	const rWidth = rect.width;
+	const rHeight = rect.height;
 
 	ctx.beginPath();
 
