@@ -23,6 +23,6 @@ Deno.test("Color: construct from 3-digit hex string", () => {
 });
 
 Deno.test("Color: throws on invalid input", () => {
-  assertThrows(() => new Color("bad"));
+  assertThrows(() => new Color("throw"));
   assertThrows(() => new Color({} as any));
 }); 
