@@ -9,6 +9,14 @@ export class Rect {
 
 	constructor(...args: [number, number, number, number] | [[number, number], [number, number]] | [object]) {
 		if (args.length === 4) {
+			if (
+				typeof args[0] !== "number" ||
+				typeof args[1] !== "number" ||
+				typeof args[2] !== "number" ||
+				typeof args[3] !== "number"
+			) {
+				throw new Error("Invalid arguments for Rect");
+			}
 			this.left = Number(args[0]);
 			this.top = Number(args[1]);
 			this.width = Number(args[2]);
@@ -16,18 +24,37 @@ export class Rect {
 		} else if (
 			args.length === 2 &&
 			Array.isArray(args[0]) && args[0].length === 2 &&
-			Array.isArray(args[1]) && args[1].length === 2
+			Array.isArray(args[1]) && args[1].length === 2 &&
+			typeof args[0][0] === "number" && typeof args[0][1] === "number" &&
+			typeof args[1][0] === "number" && typeof args[1][1] === "number"
 		) {
 			this.left = Number(args[0][0]);
 			this.top = Number(args[0][1]);
 			this.width = Number(args[1][0]);
 			this.height = Number(args[1][1]);
-		} else if (args.length === 1 && typeof args[0] === "object" && args[0] !== null) {
+		} else if (
+			args.length === 1 &&
+			typeof args[0] === "object" &&
+			args[0] !== null &&
+			!Array.isArray(args[0])
+		) {
 			const obj = args[0] as { left?: number; x?: number; top?: number; y?: number; width?: number; height?: number };
-			this.left = obj.left ?? obj.x ?? 0;
-			this.top = obj.top ?? obj.y ?? 0;
-			this.width = obj.width ?? 0;
-			this.height = obj.height ?? 0;
+			const left = obj.left ?? obj.x;
+			const top = obj.top ?? obj.y;
+			const width = obj.width;
+			const height = obj.height;
+			if (
+				(left !== undefined && typeof left !== "number") ||
+				(top !== undefined && typeof top !== "number") ||
+				(width !== undefined && typeof width !== "number") ||
+				(height !== undefined && typeof height !== "number")
+			) {
+				throw new Error("Invalid arguments for Rect");
+			}
+			this.left = left ?? 0;
+			this.top = top ?? 0;
+			this.width = width ?? 0;
+			this.height = height ?? 0;
 		} else {
 			throw new Error("Invalid arguments for Rect");
 		}
@@ -85,23 +112,52 @@ export class Rect {
 
 	update(...args: [number, number, number, number] | [[number, number], [number, number]] | [object]) {
 		if (args.length === 4) {
+			if (
+				typeof args[0] !== "number" ||
+				typeof args[1] !== "number" ||
+				typeof args[2] !== "number" ||
+				typeof args[3] !== "number"
+			) {
+				throw new Error("Invalid arguments for Rect");
+			}
 			this.left = args[0];
 			this.top = args[1];
 			this.width = args[2];
 			this.height = args[3];
 		} else if (
-			args.length === 2 && Array.isArray(args[0]) && Array.isArray(args[1])
+			args.length === 2 &&
+			Array.isArray(args[0]) && args[0].length === 2 &&
+			Array.isArray(args[1]) && args[1].length === 2 &&
+			typeof args[0][0] === "number" && typeof args[0][1] === "number" &&
+			typeof args[1][0] === "number" && typeof args[1][1] === "number"
 		) {
 			this.left = args[0][0];
 			this.top = args[0][1];
 			this.width = args[1][0];
 			this.height = args[1][1];
-		} else if (args.length === 1 && typeof args[0] === "object") {
+		} else if (
+			args.length === 1 &&
+			typeof args[0] === "object" &&
+			args[0] !== null &&
+			!Array.isArray(args[0])
+		) {
 			const obj = args[0] as { left?: number; top?: number; x?: number; y?: number; width?: number; height?: number };
-			this.left = obj.left ?? obj.x ?? 0;
-			this.top = obj.top ?? obj.y ?? 0;
-			this.width = obj.width ?? 0;
-			this.height = obj.height ?? 0;
+			const left = obj.left ?? obj.x;
+			const top = obj.top ?? obj.y;
+			const width = obj.width;
+			const height = obj.height;
+			if (
+				(left !== undefined && typeof left !== "number") ||
+				(top !== undefined && typeof top !== "number") ||
+				(width !== undefined && typeof width !== "number") ||
+				(height !== undefined && typeof height !== "number")
+			) {
+				throw new Error("Invalid arguments for Rect");
+			}
+			this.left = left ?? 0;
+			this.top = top ?? 0;
+			this.width = width ?? 0;
+			this.height = height ?? 0;
 		} else {
 			throw new Error("Invalid arguments for Rect");
 		}
