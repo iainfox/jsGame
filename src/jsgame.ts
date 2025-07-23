@@ -2,6 +2,11 @@ import { core } from "./core/core.ts";
 import { draw } from "./draw/draw.ts";
 
 class JSGAME {
+	initialized: boolean;
+	quitCallbacks: Array<() => void>;
+	core: typeof core;
+	draw: typeof draw;
+
 	constructor() {
 		this.initialized = false;
 		this.quitCallbacks = [];
@@ -22,7 +27,7 @@ class JSGAME {
 		return canvas.getContext("2d");
 	}
 
-	quit(close) {
+	quit(close: boolean) {
 		this.quitCallbacks.forEach((callback) => {
 			callback();
 		});
@@ -35,8 +40,8 @@ class JSGAME {
 		return this.initialized;
 	}
 
-	registerQuit(callback) {
-		if (!typeof callback === "function") {
+	registerQuit(callback: () => void) {
+		if (typeof callback !== "function") {
 			throw new Error('"callback" argument must be a function');
 		}
 		this.quitCallbacks.push(callback);
