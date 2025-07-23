@@ -1,18 +1,20 @@
+import { Color } from "../../core/color.ts";
 import { core } from "../../core/core.ts";
+import { Rect } from "../../core/Rect.ts";
 
 export function rect(
-	ctx,
-	color,
-	rect,
-	width = 0,
-	borderRadius = 0,
-	borderTopLeftRadius = -1,
-	borderTopRightRadius = -1,
-	borderBottomLeftRadius = -1,
-	borderBottomRightRadius = -1,
+	ctx: CanvasRenderingContext2D,
+	color: Color = new Color(0, 0, 0),
+	rect: Rect,
+	width: number = 0,
+	borderRadius: number = 0,
+	borderTopLeftRadius: number = 0,
+	borderTopRightRadius: number = 0,
+	borderBottomLeftRadius: number = 0,
+	borderBottomRightRadius: number = 0,
 ) {
-	ctx.fillStyle = new core.Color(color).hex3;
-	ctx.strokeStyle = new core.Color(color).hex3;
+	ctx.fillStyle = color.hex3;
+	ctx.strokeStyle = color.hex3;
 	if (width == 0) {
 		ctx.fillRect(rect.left, rect.top, rect.width, rect.height);
 
@@ -20,14 +22,24 @@ export function rect(
 	} else if (width > 0) {
 		ctx.lineWidth = width;
 
-		ctx.roundRect(
-			rect.left + width / 2,
-			rect.top + width / 2,
-			rect.width - width,
-			rect.height - width,
-			borderRadius,
-		);
-		ctx.stroke();
+        if (borderBottomLeftRadius || borderBottomRightRadius || borderTopLeftRadius || borderTopRightRadius) {
+            ctx.roundRect(
+                rect.left + width / 2,
+                rect.top + width / 2,
+                rect.width - width,
+                rect.height - width,
+                [borderTopLeftRadius, borderTopRightRadius, borderBottomLeftRadius, borderBottomRightRadius],
+            )
+        } else {
+            ctx.roundRect(
+                rect.left + width / 2,
+                rect.top + width / 2,
+                rect.width - width,
+                rect.height - width,
+                borderRadius,
+            );
+        }
+        ctx.stroke();
 
 		return new core.Rect(rect.left, rect.top, rect.width, rect.height);
 	} else if (width < 0) {
