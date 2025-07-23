@@ -8,10 +8,10 @@ export function line(
     endPos: Array<number>,
     width: number = 1) {
 
-	let x1 = startPos[0];
-	let y1 = startPos[1];
-	let x2 = endPos[0];
-	let y2 = endPos[1];
+	const x1 = startPos[0];
+	const y1 = startPos[1];
+	const x2 = endPos[0];
+	const y2 = endPos[1];
 
 	const rWidth = Math.max(x1, x2) - Math.min(x1, x2);
 	const rHeight = Math.max(y1, y2) - Math.min(y1, y2);
