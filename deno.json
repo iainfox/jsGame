@@ -12,7 +12,8 @@
         "lib": [
             "esnext",
             "dom",
-            "dom.iterable"
+            "dom.iterable",
+            "deno.ns"
         ]
     }
 }
