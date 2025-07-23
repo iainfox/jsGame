@@ -1,6 +1,18 @@
+import { Color } from "../../core/color.ts";
 import { core } from "../../core/core.ts";
 
-export function line(ctx, color, startPos, endPos, width = 1) {
+export function line(
+    ctx: CanvasRenderingContext2D, 
+    color: Color,
+    startPos: Array<number>, 
+    endPos: Array<number>,
+    width: number = 1) {
+
+	let x1 = startPos[0];
+	let y1 = startPos[1];
+	let x2 = endPos[0];
+	let y2 = endPos[1];
+
 	const rWidth = Math.max(x1, x2) - Math.min(x1, x2);
 	const rHeight = Math.max(y1, y2) - Math.min(y1, y2);
 
@@ -9,17 +21,13 @@ export function line(ctx, color, startPos, endPos, width = 1) {
 	}
 
 	ctx.lineWidth = width;
-	ctx.fillStyle = new core.Color(color).hex3;
-	ctx.strokeStyle = new core.Color(color).hex3;
-
-	let x1 = startPos[0];
-	let y1 = startPos[1];
-	let x2 = endPos[0];
-	let y2 = endPos[1];
+	ctx.fillStyle = color.hex3;
+	ctx.strokeStyle = color.hex3;
 
 	ctx.beginPath();
 	ctx.moveTo(x1, y1);
 	ctx.lineTo(x2, y2);
 	ctx.stroke();
+
 	return new core.Rect(Math.min(x1, x2), Math.min(y1, y2), rWidth, rHeight);
 }
