@@ -1,6 +1,13 @@
+import { Color } from "../../core/color.ts";
 import { core } from "../../core/core.ts";
 
-export function lines(ctx, color, closed, points, width = 1) {
+export function lines(
+    ctx: CanvasRenderingContext2D,
+    color: Color,
+    closed: boolean,
+    points: Array<Array<number>>, 
+    width = 1
+) {
 	if (!Array.isArray(points)) {
 		throw new Error('"points" must be an array of integer arrays');
 	}
@@ -9,25 +16,25 @@ export function lines(ctx, color, closed, points, width = 1) {
 		throw new Error('"points" must contain 2 or more points');
 	}
 
-	let xs = points.map((p) => p[0]);
-	let ys = points.map((p) => p[1]);
+	const xs = points.map((p) => p[0]);
+	const ys = points.map((p) => p[1]);
 
-	let left = Math.min(...xs);
-	let top = Math.min(...ys);
-	let right = Math.max(...xs);
-	let bottom = Math.max(...ys);
+	const left = Math.min(...xs);
+	const top = Math.min(...ys);
+	const right = Math.max(...xs);
+	const bottom = Math.max(...ys);
 
-	let rWidth = right - left;
-	let rHeight = bottom - top;
+	const rWidth = right - left;
+	const rHeight = bottom - top;
 
 	if (width < 1) {
-		let p1 = points[0];
+		const p1 = points[0];
 		return new core.Rect([p1[0], p1[1]], [0, 0]);
 	}
 
 	ctx.lineWidth = width;
-	ctx.fillStyle = new core.Color(color).hex3;
-	ctx.strokeStyle = new core.Color(color).hex3;
+	ctx.fillStyle = color.hex3;
+	ctx.strokeStyle = color.hex3;
 
 	ctx.beginPath();
 
