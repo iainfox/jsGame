@@ -2,28 +2,32 @@ import createKeyDict from "./keyPressed.ts";
 import { maps } from "./keyMap.ts";
 
 export class Key {
+	keys: Record<string, boolean>;
+	type: string;
+	dataType: string;
+
 	constructor() {
 		this.keys = createKeyDict();
 		this.type = "key";
 		this.dataType = "key";
 
-		document.addEventListener("keydown", (event) => {
+		document.addEventListener("keydown", (event: KeyboardEvent) => {
 			this.keys[event.code] = true;
 		});
 
-		document.addEventListener("keyup", (event) => {
+		document.addEventListener("keyup", (event: KeyboardEvent) => {
 			this.keys[event.code] = false;
 		});
 	}
 
-	getPressed() {
+	getPressed(): Record<string, boolean> {
 		return this.keys;
 	}
 
-	getMods() {
-		const mods = [];
+	getMods(): string[] {
+		const mods: string[] = [];
 
-		Object.keys(maps.ModKeyMap).forEach((mod) => {
+		Object.keys(maps.ModKeyMap).forEach((mod: string) => {
 			if (this.keys[mod] === true) {
 				mods.push(mod);
 			}
@@ -32,13 +36,13 @@ export class Key {
 		return mods;
 	}
 
-	name(keyCode) {
-		return Object.keys(maps.KeyMap).find((key) =>
-			maps.KeyMap[key] === keyCode
+	name(keyCode: string): string | null {
+		return (Object.keys(maps.KeyMap) as Array<keyof typeof maps.KeyMap>).find(
+			(key) => maps.KeyMap[key] === keyCode
 		) || null;
 	}
 
-	keyCode(name) {
-		return maps.KeyMap[name] || null;
+	keyCode(name: keyof typeof maps.KeyMap): string | null {
+		return maps.KeyMap[name] ?? null;
 	}
 }
