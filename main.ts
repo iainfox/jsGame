@@ -10,6 +10,7 @@ canvas.width = globalThis.innerWidth;
 canvas.height = globalThis.innerHeight;
 
 const surface = canvas.getContext("2d");
+if (!surface) throw new Error("Could not get 2D context");
 
 const points = [
 	[25, 20],
