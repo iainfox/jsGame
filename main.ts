@@ -2,8 +2,8 @@ import { jsgame } from "./src/jsgame.ts";
 
 const canvas = document.getElementById("canvas");
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.width = globalThis.innerWidth;
+canvas.height = globalThis.innerHeight;
 
 const surface = canvas.getContext("2d");
 

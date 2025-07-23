@@ -16,8 +16,8 @@ class JSGAME {
 			canvas = document.body.appendChild(document.createElement("canvas"));
 		}
 		canvas.id = "screen";
-		canvas.width = window.innerWidth;
-		canvas.height = window.innerHeight;
+		canvas.width = globalThis.innerWidth;
+		canvas.height = globalThis.innerHeight;
 		this.initialized = true;
 		return canvas.getContext("2d");
 	}
@@ -27,7 +27,7 @@ class JSGAME {
 			callback();
 		});
 		if (close) {
-			window.close();
+			globalThis.close();
 		}
 	}
 
