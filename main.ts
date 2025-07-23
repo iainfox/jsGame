@@ -1,13 +1,17 @@
 import { jsgame } from "./src/jsgame.ts";
 
-const canvas = document.getElementById("canvas");
+const canvas = document.getElementById("canvas") as HTMLCanvasElement;
+
+if (canvas == null) {
+    throw new Error("No canvas found")
+}
 
 canvas.width = globalThis.innerWidth;
 canvas.height = globalThis.innerHeight;
 
 const surface = canvas.getContext("2d");
 
-let points = [
+const points = [
 	[25, 20],
 	[80, 26],
 	[180, 80],
