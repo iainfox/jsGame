@@ -1,6 +1,9 @@
 import { jsgame } from "./src/jsgame.js";
 
 const surface = jsgame.init();
+let pause = false
+let lastPause = 0
+let pauseDebounce = 500
 
 const pos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
 const size = 25;
@@ -205,6 +208,13 @@ function update() {
 	const w = window.innerWidth;
 	const h = window.innerHeight;
 	const keys = jsgame.key.getPressed();
+	const now = performance.now();
+
+	if (keys.KeyP && now - lastPause >= pauseDebounce) {
+		pause = !pause;
+		lastPause = now;
+	}
+	if (pause) return;
 
 	if (keys.KeyW) speed = Math.min(speed + acceleration, maxSpeed);
 	if (keys.KeyS) speed = Math.max(speed - reverseAccel, -reverseSpeed);
@@ -213,7 +223,6 @@ function update() {
 
 	speed *= drag;
 
-	const now = performance.now();
 
 	if (keys.Space && (!prevSpace || now - lastShot >= fireCooldown)) {
 		lastShot = now;
