@@ -20,6 +20,7 @@ class JSGAME {
 			canvas = document.body.appendChild(document.createElement("canvas"));
 		}
 		canvas.id = "screen";
+		canvas.style.display = "block";
 		canvas.width = window.innerWidth;
 		canvas.height = window.innerHeight;
 		this.initialized = true;
