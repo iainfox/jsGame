@@ -1,4 +1,4 @@
-import { Rect } from "./rect.js";
+import { Rect } from "./Rect.js";
 import { Color } from "./color.js";
 
 export const core = {
