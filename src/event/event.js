@@ -63,30 +63,30 @@ export class event {
 			"USEREVENT": 32866
 		};
         
-        window.addEventListener('mousemove', this.push(1024));
-        window.addEventListener('mousedown', this.push(1025));
-        window.addEventListener('mouseup', this.push(1026));
-        window.addEventListener('wheel', this.push(1076));
+        window.addEventListener('mousemove', () => this.push(1024));
+        window.addEventListener('mousedown', () => this.push(1025));
+        window.addEventListener('mouseup', () => this.push(1026));
+        window.addEventListener('wheel', () => this.push(1027));
 
-        window.addEventListener('keydown', this.push(798));
-        window.addEventListener('keyup', this.push(769));
+        window.addEventListener('keydown', () => this.push(768));
+        window.addEventListener('keyup', () => this.push(769));
 
-        window.addEventListener('touchstart', this.push(1792));
-        window.addEventListener('touchmove', this.push(1794));
-        window.addEventListener('touchend', this.push(1793));
+        window.addEventListener('touchstart', () => this.push(1792));
+        window.addEventListener('touchmove', () => this.push(1794));
+        window.addEventListener('touchend', () => this.push(1793));
 
-        window.addEventListener('beforeunload', this.push(256));
+        window.addEventListener('beforeunload', () => this.push(256));
         document.addEventListener('visibilitychange', () => {
             this.visible = !this.visible;
             this.push({ id: this.visible ? 513 : 514 });
         });
 
-        window.addEventListener('blur', this.push(1));
-        window.addEventListener('focus', this.push(1));
+        window.addEventListener('blur', () => this.push(1));
+        window.addEventListener('focus', () => this.push(1));
 
-        window.addEventListener('dragstart', this.push(4098));
-        window.addEventListener('dragend', this.push(4099));
-        window.addEventListener('drop', this.push(4096));
+        window.addEventListener('dragstart', () => this.push(4098));
+        window.addEventListener('dragend', () => this.push(4099));
+        window.addEventListener('drop', () => this.push(4096));
 
 		this.queue = [];
         this.waitCb = [];

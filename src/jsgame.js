@@ -1,5 +1,7 @@
 import { core } from "./core/core.js";
 import { draw } from "./draw/draw.js";
+import { Key } from "./IO/key.js";
+import { event } from "./event/event.js";
 
 class JSGAME {
 	constructor() {
@@ -7,6 +9,8 @@ class JSGAME {
 		this.quitCallbacks = [];
 		this.core = core;
 		this.draw = draw;
+		this.key = new Key();
+		this.event = new event();
 	}
 
 	init() {
