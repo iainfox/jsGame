@@ -1,5 +1,5 @@
 {
-  "name": "jsgame",
+  "name": "@iainfox/jsgame",
   "version": "0.1.0",
   "description": "A JavaScript library inspired by Pygame, recreating common Pygame functions for drawing and input handling.",
   "type": "module",
