@@ -2,15 +2,64 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>jsGame</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="example-list">
-        <a class="link" href="/space-shooter">
-            <span>Space Shooter →</span>
-        </a>
-    </div>
+    <header class="site-header">
+        <a class="brand" href="/">jsGame</a>
+        <nav class="nav" aria-label="Main navigation">
+            <a class="nav-link" href="https://www.github.com/iainfox/jsgame" target="_blank" rel="noopener noreferrer">Repo</a>
+            <div class="dropdown" tabindex="0">
+                <button class="dropdown-toggle" type="button">Live Demo <span class="caret">▾</span></button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/space-shooter">Space Shooter</a>
+                </div>
+            </div>
+            <a class="nav-link" href="/docs.html">Docs</a>
+        </nav>
+    </header>
+
+    <main class="landing">
+        <section class="hero-wrap">
+            <div class="hero">
+                <h1 class="hero-title">jsGame</h1>
+                <p class="hero-description">
+                    A JavaScript game library inspired by Pygame. Draw shapes, read the keyboard,
+                    and push events with a clean, pygame-style API.
+                    Built on plain HTML5 Canvas and shipped as a tiny ES module.
+                </p>
+            </div>
+            <div class="hero-shot" aria-hidden="true">
+                <img src="assets/space-shooter-ss.png" alt="Screenshot of the Space Shooter demo">
+            </div>
+        </section>
+
+        <section class="section docs-section">
+            <h2 class="section-title">Documentation</h2>
+            <p class="section-text">
+                Everything you need to start building with jsGame lives in the docs: installation
+                steps, a getting-started guide, and a full API reference for every module, from
+                drawing shapes to handling keyboard input and events.
+            </p>
+            <a class="link" href="/docs.html">Read the docs →</a>
+        </section>
+
+        <section class="section demo-section">
+            <h2 class="section-title">Space Shooter</h2>
+            <p class="section-text">
+                A live demo built with jsGame. Pilot a ship through an asteroid field, blast the
+                rocks into smaller chunks, and chase the high score. Controls: W/S to thrust,
+                A/D to turn, Space to fire, P to pause.
+            </p>
+            <a class="link" href="/space-shooter">Play Space Shooter →</a>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <span>jsGame — an open source game library</span>
+        <a class="link" href="https://www.github.com/iainfox/jsgame" target="_blank" rel="noopener noreferrer">github.com/iainfox/jsgame</a>
+    </footer>
 </body>
 </html>
