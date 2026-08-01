@@ -17,8 +17,10 @@ const drag = 0.985;
 const bulletSpeed = 10;
 const bulletSize = 6;
 const bulletLifetime = 5000;
+const fireCooldown = 200;
 
 let prevSpace = false;
+let lastShot = 0;
 const bullets = [];
 
 function triangleAt(offsetX, offsetY) {
@@ -42,7 +44,10 @@ function update() {
 
 	speed *= drag;
 
-	if (keys.Space && !prevSpace) {
+	const now = performance.now();
+
+	if (keys.Space && (!prevSpace || now - lastShot >= fireCooldown)) {
+		lastShot = now;
 		const tipX = pos.x + size * Math.cos(angle);
 		const tipY = pos.y + size * Math.sin(angle);
 		bullets.push({
@@ -50,12 +55,10 @@ function update() {
 			y: tipY,
 			vx: Math.cos(angle) * bulletSpeed,
 			vy: Math.sin(angle) * bulletSpeed,
-			expires: performance.now() + bulletLifetime
+			expires: now + bulletLifetime
 		});
 	}
 	prevSpace = keys.Space;
-
-	const now = performance.now();
 	for (let i = bullets.length - 1; i >= 0; i--) {
 		const bullet = bullets[i];
 		bullet.x += bullet.vx;
