@@ -14,6 +14,13 @@ const braking = 0.3;
 const turnSpeed = 0.05;
 const drag = 0.985;
 
+const bulletSpeed = 10;
+const bulletSize = 6;
+const bulletLifetime = 5000;
+
+let prevSpace = false;
+const bullets = [];
+
 function triangleAt(offsetX, offsetY) {
 	const x = pos.x + offsetX;
 	const y = pos.y + offsetY;
@@ -24,7 +31,10 @@ function triangleAt(offsetX, offsetY) {
 }
 
 function update() {
+	const w = window.innerWidth;
+	const h = window.innerHeight;
 	const keys = jsgame.key.getPressed();
+
 	if (keys.KeyW) speed = Math.min(speed + acceleration, maxSpeed);
 	if (keys.KeyS) speed = Math.max(speed - braking, 0);
 	if (keys.KeyA) angle -= turnSpeed;
@@ -32,11 +42,34 @@ function update() {
 
 	speed *= drag;
 
+	if (keys.Space && !prevSpace) {
+		const tipX = pos.x + size * Math.cos(angle);
+		const tipY = pos.y + size * Math.sin(angle);
+		bullets.push({
+			x: tipX,
+			y: tipY,
+			vx: Math.cos(angle) * bulletSpeed,
+			vy: Math.sin(angle) * bulletSpeed,
+			expires: performance.now() + bulletLifetime
+		});
+	}
+	prevSpace = keys.Space;
+
+	const now = performance.now();
+	for (let i = bullets.length - 1; i >= 0; i--) {
+		const bullet = bullets[i];
+		bullet.x += bullet.vx;
+		bullet.y += bullet.vy;
+		if (bullet.x < 0) bullet.x += w;
+		else if (bullet.x > w) bullet.x -= w;
+		if (bullet.y < 0) bullet.y += h;
+		else if (bullet.y > h) bullet.y -= h;
+		if (bullet.expires < now) bullets.splice(i, 1);
+	}
+
 	pos.x += Math.cos(angle) * speed;
 	pos.y += Math.sin(angle) * speed;
 
-	const w = window.innerWidth;
-	const h = window.innerHeight;
 	if (pos.x < 0) pos.x += w;
 	else if (pos.x > w) pos.x -= w;
 	if (pos.y < 0) pos.y += h;
@@ -48,6 +81,12 @@ function render() {
 	const h = window.innerHeight;
 
 	surface.clearRect(0, 0, w, h);
+
+	for (const bullet of bullets) {
+		jsgame.draw.rect(surface, "#ff0000", new jsgame.core.Rect(
+			bullet.x - bulletSize / 2, bullet.y - bulletSize / 2, bulletSize, bulletSize
+		));
+	}
 
 	jsgame.draw.polygon(surface, "#FF0000", triangleAt(0, 0));
 
