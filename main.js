@@ -9,8 +9,9 @@ let angle = -Math.PI / 2;
 let speed = 0;
 
 const maxSpeed = 8;
+const reverseSpeed = 4;
 const acceleration = 0.2;
-const braking = 0.3;
+const reverseAccel = 0.1;
 const turnSpeed = 0.05;
 const drag = 0.985;
 
@@ -180,7 +181,7 @@ function update() {
 	const keys = jsgame.key.getPressed();
 
 	if (keys.KeyW) speed = Math.min(speed + acceleration, maxSpeed);
-	if (keys.KeyS) speed = Math.max(speed - braking, 0);
+	if (keys.KeyS) speed = Math.max(speed - reverseAccel, -reverseSpeed);
 	if (keys.KeyA) angle -= turnSpeed;
 	if (keys.KeyD) angle += turnSpeed;
 
