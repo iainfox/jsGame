@@ -1,37 +1,16 @@
 {
-  "name": "@iainfox/jsgame",
-  "version": "0.1.0",
-  "description": "A JavaScript library inspired by Pygame, recreating common Pygame functions for drawing and input handling.",
-  "type": "module",
-  "main": "./dist/jsgame.js",
-  "module": "./dist/jsgame.js",
-  "exports": {
-    ".": {
-      "types": "./dist/jsgame.d.ts",
-      "import": "./dist/jsgame.js",
-      "default": "./dist/jsgame.js"
-    },
-    "./package.json": "./package.json"
-  },
-  "files": [
-    "dist",
-    "src"
-  ],
+  "name": "jsgame",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "build": "node scripts/build.mjs",
-    "build:watch": "node scripts/build.mjs --watch",
-    "prepublishOnly": "npm run build"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "pygame",
-    "canvas",
-    "game",
-    "drawing",
-    "2d",
-    "graphics"
-  ],
-  "license": "MIT",
-  "devDependencies": {
-    "esbuild": "^0.25.12"
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.33.0",
+  "dependencies": {
+    "@iainfox/jsgame": "^1.0.0"
   }
 }

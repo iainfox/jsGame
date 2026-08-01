@@ -1,0 +1,22 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      '@iainfox/jsgame':
+        specifier: ^0.1.0
+        version: 0.1.0
+
+packages:
+
+  '@iainfox/jsgame@0.1.0':
+    resolution: {integrity: sha512-W1yOt2VeZ3ogyl05K+7ey9VAff5UZB8/IDJ7DKd3/DGmzMR0LwoIQpCcx/mnZpVUFc5kWGvIu2hOE95i3g6E/A==}
+
+snapshots:
+
+  '@iainfox/jsgame@0.1.0': {}
