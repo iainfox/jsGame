@@ -15,7 +15,7 @@ const turnSpeed = 0.05;
 const drag = 0.985;
 
 const bulletSpeed = 10;
-const bulletSize = 6;
+const bulletSize = 4;
 const bulletLifetime = 5000;
 const fireCooldown = 200;
 
