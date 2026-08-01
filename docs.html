@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>jsGame — Documentation</title>
+    <title>jsGame, Documentation</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -91,11 +91,11 @@ const events = jsgame.event.get();</code></pre>
                 <li><span class="status missing">×</span> Unimplemented</li>
             </ul>
             <ul class="status-list">
-                <li><span class="status done">✓</span> <code>init()</code> — creates a canvas if one doesn't exist and returns its 2D context</li>
-                <li><span class="status done">✓</span> <code>quit(close)</code> — calls all quit callbacks and optionally closes the window</li>
-                <li><span class="status done">✓</span> <code>getInit()</code> — returns true if jsgame is currently initialized</li>
-                <li><span class="status done">✓</span> <code>registerQuit(callback)</code> — registers a function to call when the library quits</li>
-                <li><span class="status missing">×</span> <code>error</code>, <code>getError()</code>, <code>setError()</code> — standard error handling</li>
+                <li><span class="status done">✓</span> <code>init()</code>, creates a canvas if one doesn't exist and returns its 2D context</li>
+                <li><span class="status done">✓</span> <code>quit(close)</code>, calls all quit callbacks and optionally closes the window</li>
+                <li><span class="status done">✓</span> <code>getInit()</code>, returns true if jsgame is currently initialized</li>
+                <li><span class="status done">✓</span> <code>registerQuit(callback)</code>, registers a function to call when the library quits</li>
+                <li><span class="status missing">×</span> <code>error</code>, <code>getError()</code>, <code>setError()</code>, standard error handling</li>
             </ul>
         </section>
 
@@ -114,17 +114,17 @@ new jsgame.core.Rect({ x: 10, y: 20, width: 100, height: 50 });</code></pre>
             <p>Properties: <code>left</code>, <code>top</code>, <code>width</code>, <code>height</code>, <code>right</code>, <code>bottom</code>.</p>
             <p>Methods:</p>
             <ul>
-                <li><code>copy()</code> — returns a new copy</li>
-                <li><code>move(x, y)</code> / <code>moveInPlace(x, y)</code> — translate the rect</li>
-                <li><code>inflate(x, y)</code> / <code>inflateInPlace(x, y)</code> — grow or shrink</li>
-                <li><code>scaleBy(x, y)</code> / <code>scaleByInPlace(x, y)</code> — scale dimensions</li>
-                <li><code>update(...)</code> — reassign position and size</li>
-                <li><code>clamp(rect)</code> / <code>clampInPlace(rect)</code> — clamp against another rect</li>
-                <li><code>clip(rect)</code> — intersection of two rects</li>
-                <li><code>union(rect)</code> / <code>unionInPlace(rect)</code> — union of two rects</li>
-                <li><code>unionAll(rects)</code> / <code>unionAllInPlace(rects)</code> — union of many rects</li>
-                <li><code>contains(rect)</code> — true if fully contained</li>
-                <li><code>collidePoint(x, y)</code> — true if the point is inside</li>
+                <li><code>copy()</code>, returns a new copy</li>
+                <li><code>move(x, y)</code> / <code>moveInPlace(x, y)</code>, translate the rect</li>
+                <li><code>inflate(x, y)</code> / <code>inflateInPlace(x, y)</code>, grow or shrink</li>
+                <li><code>scaleBy(x, y)</code> / <code>scaleByInPlace(x, y)</code>, scale dimensions</li>
+                <li><code>update(...)</code>, reassign position and size</li>
+                <li><code>clamp(rect)</code> / <code>clampInPlace(rect)</code>, clamp against another rect</li>
+                <li><code>clip(rect)</code>, intersection of two rects</li>
+                <li><code>union(rect)</code> / <code>unionInPlace(rect)</code>, union of two rects</li>
+                <li><code>unionAll(rects)</code> / <code>unionAllInPlace(rects)</code>, union of many rects</li>
+                <li><code>contains(rect)</code>, true if fully contained</li>
+                <li><code>collidePoint(x, y)</code>, true if the point is inside</li>
             </ul>
 
             <h3><code>Color</code></h3>
@@ -142,13 +142,13 @@ new jsgame.core.Rect({ x: 10, y: 20, width: 100, height: 50 });</code></pre>
                 instead of fill.
             </p>
             <ul class="status-list">
-                <li><span class="status done">✓</span> <code>rect(ctx, color, rect, width, borderRadius, ...)</code> — draws a rectangle</li>
-                <li><span class="status done">✓</span> <code>polygon(ctx, color, points, width)</code> — draws a polygon from an array of <code>[x, y]</code> points</li>
-                <li><span class="status done">✓</span> <code>circle(ctx, color, center, radius, width, ...)</code> — draws a circle, optionally quarter-by-quarter</li>
-                <li><span class="status done">✓</span> <code>ellipse(ctx, color, ...)</code> — draws an ellipse</li>
-                <li><span class="status done">✓</span> <code>line(ctx, color, start, end, width)</code> — draws a straight line</li>
-                <li><span class="status done">✓</span> <code>lines(ctx, color, points, width)</code> — draws connected line segments</li>
-                <li><span class="status missing">×</span> <code>aaline</code> / <code>aalines</code> — antialiased lines</li>
+                <li><span class="status done">✓</span> <code>rect(ctx, color, rect, width, borderRadius, ...)</code>, draws a rectangle</li>
+                <li><span class="status done">✓</span> <code>polygon(ctx, color, points, width)</code>, draws a polygon from an array of <code>[x, y]</code> points</li>
+                <li><span class="status done">✓</span> <code>circle(ctx, color, center, radius, width, ...)</code>, draws a circle, optionally quarter-by-quarter</li>
+                <li><span class="status done">✓</span> <code>ellipse(ctx, color, ...)</code>, draws an ellipse</li>
+                <li><span class="status done">✓</span> <code>line(ctx, color, start, end, width)</code>, draws a straight line</li>
+                <li><span class="status done">✓</span> <code>lines(ctx, color, points, width)</code>, draws connected line segments</li>
+                <li><span class="status missing">×</span> <code>aaline</code> / <code>aalines</code>, antialiased lines</li>
             </ul>
         </section>
 
@@ -160,12 +160,12 @@ new jsgame.core.Rect({ x: 10, y: 20, width: 100, height: 50 });</code></pre>
                 <code>KeyD</code> and <code>Space</code>.
             </p>
             <ul class="status-list">
-                <li><span class="status done">✓</span> <code>getPressed()</code> — returns the state of all keyboard buttons (keyed by <code>event.code</code>)</li>
-                <li><span class="status done">✓</span> <code>getMods()</code> — returns the modifier keys currently held</li>
-                <li><span class="status done">✓</span> <code>name(keyCode)</code> — get the name of a key identifier</li>
-                <li><span class="status done">✓</span> <code>keyCode(name)</code> — get the identifier from a key name</li>
-                <li><span class="status wip">-</span> <code>setMods()</code> — temporarily set which modifiers are pressed</li>
-                <li><span class="status missing">×</span> <code>getFocused()</code>, <code>setRepeat()</code>, <code>getRepeat()</code> — system focus and key repeat</li>
+                <li><span class="status done">✓</span> <code>getPressed()</code>, returns the state of all keyboard buttons (keyed by <code>event.code</code>)</li>
+                <li><span class="status done">✓</span> <code>getMods()</code>, returns the modifier keys currently held</li>
+                <li><span class="status done">✓</span> <code>name(keyCode)</code>, get the name of a key identifier</li>
+                <li><span class="status done">✓</span> <code>keyCode(name)</code>, get the identifier from a key name</li>
+                <li><span class="status wip">-</span> <code>setMods()</code>, temporarily set which modifiers are pressed</li>
+                <li><span class="status missing">×</span> <code>getFocused()</code>, <code>setRepeat()</code>, <code>getRepeat()</code>, system focus and key repeat</li>
             </ul>
         </section>
 
@@ -173,22 +173,22 @@ new jsgame.core.Rect({ x: 10, y: 20, width: 100, height: 50 });</code></pre>
             <h2><code>jsgame.event</code></h2>
             <p>Event queue handling, mirroring <code>pygame.event</code>.</p>
             <ul class="status-list">
-                <li><span class="status done">✓</span> <code>get()</code> — get events from the queue</li>
-                <li><span class="status done">✓</span> <code>poll()</code> — get a single event from the queue</li>
-                <li><span class="status done">✓</span> <code>peek()</code> — test if events are waiting on the queue</li>
-                <li><span class="status done">✓</span> <code>clear()</code> — remove all events from the queue</li>
-                <li><span class="status done">✓</span> <code>eventName()</code> — get the string name from an event id</li>
-                <li><span class="status done">✓</span> <code>setBlocked()</code> / <code>setAllowed()</code> / <code>getBlocked()</code> — control which events are queued</li>
-                <li><span class="status wip">-</span> <code>setGrab()</code> / <code>getGrab()</code> — control input device sharing</li>
-                <li><span class="status wip">-</span> <code>post()</code> / <code>customType()</code> / <code>Event</code> — custom events</li>
-                <li><span class="status missing">×</span> <code>wait()</code>, <code>pump()</code> — blocking wait and internal processing</li>
+                <li><span class="status done">✓</span> <code>get()</code>, get events from the queue</li>
+                <li><span class="status done">✓</span> <code>poll()</code>, get a single event from the queue</li>
+                <li><span class="status done">✓</span> <code>peek()</code>, test if events are waiting on the queue</li>
+                <li><span class="status done">✓</span> <code>clear()</code>, remove all events from the queue</li>
+                <li><span class="status done">✓</span> <code>eventName()</code>, get the string name from an event id</li>
+                <li><span class="status done">✓</span> <code>setBlocked()</code> / <code>setAllowed()</code> / <code>getBlocked()</code>, control which events are queued</li>
+                <li><span class="status wip">-</span> <code>setGrab()</code> / <code>getGrab()</code>, control input device sharing</li>
+                <li><span class="status wip">-</span> <code>post()</code> / <code>customType()</code> / <code>Event</code>, custom events</li>
+                <li><span class="status missing">×</span> <code>wait()</code>, <code>pump()</code>, blocking wait and internal processing</li>
             </ul>
         </section>
 
         <section class="doc-section" id="demo">
             <h2>Play the demo</h2>
             <p>
-                See the library in action with the Space Shooter demo — a complete game written
+                See the library in action with the Space Shooter demo, a complete game written
                 against jsGame. Thrust, turn, shoot asteroids, and try to top the scoreboard.
             </p>
             <p>
@@ -199,7 +199,7 @@ new jsgame.core.Rect({ x: 10, y: 20, width: 100, height: 50 });</code></pre>
     </main>
 
     <footer class="site-footer">
-        <span>jsGame — an open source game library</span>
+        <span>jsGame, an open source game library</span>
         <a class="link" href="https://www.github.com/iainfox/jsgame" target="_blank" rel="noopener noreferrer">github.com/iainfox/jsgame</a>
     </footer>
     <script src="docs.js" defer></script>
