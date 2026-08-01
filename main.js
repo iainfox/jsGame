@@ -83,25 +83,26 @@ function render() {
 	const w = window.innerWidth;
 	const h = window.innerHeight;
 
-	surface.clearRect(0, 0, w, h);
+	surface.fillStyle = "#000000";
+	surface.fillRect(0, 0, w, h);
 
 	for (const bullet of bullets) {
-		jsgame.draw.rect(surface, "#ff0000", new jsgame.core.Rect(
+		jsgame.draw.rect(surface, "#FFFFFF", new jsgame.core.Rect(
 			bullet.x - bulletSize / 2, bullet.y - bulletSize / 2, bulletSize, bulletSize
 		));
 	}
 
-	jsgame.draw.polygon(surface, "#FF0000", triangleAt(0, 0));
+	jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(0, 0));
 
-	if (pos.x < size) jsgame.draw.polygon(surface, "#FF0000", triangleAt(w, 0));
-	if (pos.x > w - size) jsgame.draw.polygon(surface, "#FF0000", triangleAt(-w, 0));
-	if (pos.y < size) jsgame.draw.polygon(surface, "#FF0000", triangleAt(0, h));
-	if (pos.y > h - size) jsgame.draw.polygon(surface, "#FF0000", triangleAt(0, -h));
+	if (pos.x < size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(w, 0));
+	if (pos.x > w - size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(-w, 0));
+	if (pos.y < size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(0, h));
+	if (pos.y > h - size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(0, -h));
 
-	if (pos.x < size && pos.y < size) jsgame.draw.polygon(surface, "#FF0000", triangleAt(w, h));
-	if (pos.x < size && pos.y > h - size) jsgame.draw.polygon(surface, "#FF0000", triangleAt(w, -h));
-	if (pos.x > w - size && pos.y < size) jsgame.draw.polygon(surface, "#FF0000", triangleAt(-w, h));
-	if (pos.x > w - size && pos.y > h - size) jsgame.draw.polygon(surface, "#FF0000", triangleAt(-w, -h));
+	if (pos.x < size && pos.y < size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(w, h));
+	if (pos.x < size && pos.y > h - size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(w, -h));
+	if (pos.x > w - size && pos.y < size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(-w, h));
+	if (pos.x > w - size && pos.y > h - size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(-w, -h));
 }
 
 function loop() {
