@@ -298,12 +298,35 @@ function render() {
 	if (pos.x > w - size && pos.y > h - size)
 		jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(-w, -h), 2);
 
-	surface.font = "20px monospace";
-	surface.textAlign = "left";
-	surface.textBaseline = "top";
+	const cell = 6;
+	const digits = String(score);
+	const startX = w - 10 - digits.length * 4 * cell + cell;
+	const startY = h - 10 - 5 * cell;
 	surface.fillStyle = "#FFFFFF";
-	surface.fillText(`Score: ${score}`, 10, 10);
+	for (let i = 0; i < digits.length; i++) {
+		const rows = digitBlocks[digits[i]];
+		for (let r = 0; r < 5; r++) {
+			for (let c = 0; c < 3; c++) {
+				if (rows[r][c] === "1") {
+					surface.fillRect(startX + i * 4 * cell + c * cell, startY + r * cell, cell, cell);
+				}
+			}
+		}
+	}
 }
+
+const digitBlocks = {
+	0: ["111", "101", "101", "101", "111"],
+	1: ["010", "110", "010", "010", "111"],
+	2: ["111", "001", "111", "100", "111"],
+	3: ["111", "001", "111", "001", "111"],
+	4: ["101", "101", "111", "001", "001"],
+	5: ["111", "100", "111", "001", "111"],
+	6: ["111", "100", "111", "101", "111"],
+	7: ["111", "001", "001", "001", "001"],
+	8: ["111", "101", "111", "101", "111"],
+	9: ["111", "101", "111", "001", "111"],
+};
 
 function drawAsteroid(a) {
 	const verts = a.verts.map((v) => [
