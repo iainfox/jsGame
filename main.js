@@ -32,8 +32,8 @@ const asteroidSizes = {
 	medium: { radius: 28, points: 50 },
 	small: { radius: 15, points: 100 },
 };
-const asteroidMax = 20;
-const spawnInterval = 750;
+const asteroidMax = 15;
+const spawnInterval = 1000;
 
 let asteroids = [];
 let lastSpawn = 0;
