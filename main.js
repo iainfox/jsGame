@@ -255,6 +255,12 @@ function render() {
 	if (pos.x < size && pos.y > h - size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(w, -h), 2);
 	if (pos.x > w - size && pos.y < size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(-w, h), 2);
 	if (pos.x > w - size && pos.y > h - size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(-w, -h), 2);
+
+	surface.font = "20px monospace";
+	surface.textAlign = "left";
+	surface.textBaseline = "top";
+	surface.fillStyle = "#FFFFFF";
+	surface.fillText(`Score: ${score}`, 10, 10);
 }
 
 function drawAsteroid(a) {
