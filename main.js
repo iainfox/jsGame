@@ -44,8 +44,14 @@ function triangleAt(offsetX, offsetY) {
 	const y = pos.y + offsetY;
 	const nose = [x + size * Math.cos(angle), y + size * Math.sin(angle)];
 	const backCenter = [x - size * Math.cos(angle), y - size * Math.sin(angle)];
-	const backLeft = [x + wingLength * Math.cos(angle + wingSpread), y + wingLength * Math.sin(angle + wingSpread)];
-	const backRight = [x + wingLength * Math.cos(angle - wingSpread), y + wingLength * Math.sin(angle - wingSpread)];
+	const backLeft = [
+		x + wingLength * Math.cos(angle + wingSpread),
+		y + wingLength * Math.sin(angle + wingSpread),
+	];
+	const backRight = [
+		x + wingLength * Math.cos(angle - wingSpread),
+		y + wingLength * Math.sin(angle - wingSpread),
+	];
 	return [nose, backLeft, backCenter, backRight];
 }
 
@@ -67,7 +73,12 @@ function makeAsteroidShape(radius) {
 function spawnAsteroid(sizeName, x, y, vx, vy) {
 	const radius = asteroidSizes[sizeName].radius * rand(0.8, 1.2);
 	asteroids.push({
-		x, y, vx, vy, sizeName, radius,
+		x,
+		y,
+		vx,
+		vy,
+		sizeName,
+		radius,
 		rot: rand(0, Math.PI * 2),
 		rotSpeed: rand(-0.02, 0.02),
 		verts: makeAsteroidShape(radius),
@@ -80,10 +91,19 @@ function spawnFromEdge() {
 	const radius = asteroidSizes.large.radius;
 	const side = Math.floor(Math.random() * 4);
 	let x, y;
-	if (side === 0) { x = -radius; y = rand(0, h); }
-	else if (side === 1) { x = w + radius; y = rand(0, h); }
-	else if (side === 2) { x = rand(0, w); y = -radius; }
-	else { x = rand(0, w); y = h + radius; }
+	if (side === 0) {
+		x = -radius;
+		y = rand(0, h);
+	} else if (side === 1) {
+		x = w + radius;
+		y = rand(0, h);
+	} else if (side === 2) {
+		x = rand(0, w);
+		y = -radius;
+	} else {
+		x = rand(0, w);
+		y = h + radius;
+	}
 	const speed = rand(0.5, 1.4);
 	const dx = w / 2 - x;
 	const dy = h / 2 - y;
@@ -112,7 +132,13 @@ function splitAsteroid(a) {
 	for (let i = 0; i < count; i++) {
 		const dir = Math.random() * Math.PI * 2;
 		const boost = rand(0.8, 1.8);
-		spawnAsteroid(childSize, a.x, a.y, a.vx + Math.cos(dir) * boost, a.vy + Math.sin(dir) * boost);
+		spawnAsteroid(
+			childSize,
+			a.x,
+			a.y,
+			a.vx + Math.cos(dir) * boost,
+			a.vy + Math.sin(dir) * boost,
+		);
 	}
 }
 
@@ -198,7 +224,7 @@ function update() {
 			y: tipY,
 			vx: Math.cos(angle) * bulletSpeed,
 			vy: Math.sin(angle) * bulletSpeed,
-			expires: now + bulletLifetime
+			expires: now + bulletLifetime,
 		});
 	}
 	prevSpace = keys.Space;
@@ -236,9 +262,16 @@ function render() {
 	surface.fillRect(0, 0, w, h);
 
 	for (const bullet of bullets) {
-		jsgame.draw.rect(surface, "#FFFFFF", new jsgame.core.Rect(
-			bullet.x - bulletSize / 2, bullet.y - bulletSize / 2, bulletSize, bulletSize
-		));
+		jsgame.draw.rect(
+			surface,
+			"#FFFFFF",
+			new jsgame.core.Rect(
+				bullet.x - bulletSize / 2,
+				bullet.y - bulletSize / 2,
+				bulletSize,
+				bulletSize,
+			),
+		);
 	}
 
 	for (const a of asteroids) {
@@ -247,15 +280,23 @@ function render() {
 
 	jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(0, 0), 2);
 
-	if (pos.x < size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(w, 0), 2);
-	if (pos.x > w - size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(-w, 0), 2);
-	if (pos.y < size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(0, h), 2);
-	if (pos.y > h - size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(0, -h), 2);
+	if (pos.x < size)
+		jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(w, 0), 2);
+	if (pos.x > w - size)
+		jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(-w, 0), 2);
+	if (pos.y < size)
+		jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(0, h), 2);
+	if (pos.y > h - size)
+		jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(0, -h), 2);
 
-	if (pos.x < size && pos.y < size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(w, h), 2);
-	if (pos.x < size && pos.y > h - size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(w, -h), 2);
-	if (pos.x > w - size && pos.y < size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(-w, h), 2);
-	if (pos.x > w - size && pos.y > h - size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(-w, -h), 2);
+	if (pos.x < size && pos.y < size)
+		jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(w, h), 2);
+	if (pos.x < size && pos.y > h - size)
+		jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(w, -h), 2);
+	if (pos.x > w - size && pos.y < size)
+		jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(-w, h), 2);
+	if (pos.x > w - size && pos.y > h - size)
+		jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(-w, -h), 2);
 
 	surface.font = "20px monospace";
 	surface.textAlign = "left";
@@ -265,7 +306,7 @@ function render() {
 }
 
 function drawAsteroid(a) {
-	const verts = a.verts.map(v => [
+	const verts = a.verts.map((v) => [
 		a.x + v[0] * Math.cos(a.rot) - v[1] * Math.sin(a.rot),
 		a.y + v[0] * Math.sin(a.rot) + v[1] * Math.cos(a.rot),
 	]);
