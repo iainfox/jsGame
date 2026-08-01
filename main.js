@@ -96,17 +96,17 @@ function render() {
 		));
 	}
 
-	jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(0, 0), 1);
+	jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(0, 0), 2);
 
-	if (pos.x < size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(w, 0), 1);
-	if (pos.x > w - size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(-w, 0), 1);
-	if (pos.y < size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(0, h), 1);
-	if (pos.y > h - size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(0, -h), 1);
+	if (pos.x < size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(w, 0), 2);
+	if (pos.x > w - size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(-w, 0), 2);
+	if (pos.y < size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(0, h), 2);
+	if (pos.y > h - size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(0, -h), 2);
 
-	if (pos.x < size && pos.y < size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(w, h), 1);
-	if (pos.x < size && pos.y > h - size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(w, -h), 1);
-	if (pos.x > w - size && pos.y < size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(-w, h), 1);
-	if (pos.x > w - size && pos.y > h - size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(-w, -h), 1);
+	if (pos.x < size && pos.y < size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(w, h), 2);
+	if (pos.x < size && pos.y > h - size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(w, -h), 2);
+	if (pos.x > w - size && pos.y < size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(-w, h), 2);
+	if (pos.x > w - size && pos.y > h - size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(-w, -h), 2);
 }
 
 function loop() {
