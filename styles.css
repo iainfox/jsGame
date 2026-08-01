@@ -432,7 +432,6 @@ pre.code-block code {
 .status-list li {
     display: flex;
     align-items: baseline;
-    gap: 10px;
     margin: 0;
 }
 
