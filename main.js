@@ -102,6 +102,26 @@ function spawnInitialField() {
 	}
 }
 
+function resetGame() {
+	pos.x = window.innerWidth / 2;
+	pos.y = window.innerHeight / 2;
+	angle = -Math.PI / 2;
+	speed = 0;
+	bullets.length = 0;
+	asteroids.length = 0;
+	lastSpawn = performance.now();
+	spawnInitialField();
+}
+
+function checkPlayerCollision() {
+	for (const a of asteroids) {
+		if (Math.hypot(pos.x - a.x, pos.y - a.y) < a.radius + size) {
+			resetGame();
+			return;
+		}
+	}
+}
+
 function moveAsteroids() {
 	const w = window.innerWidth;
 	const h = window.innerHeight;
@@ -172,6 +192,8 @@ function update() {
 	else if (pos.x > w) pos.x -= w;
 	if (pos.y < 0) pos.y += h;
 	else if (pos.y > h) pos.y -= h;
+
+	checkPlayerCollision();
 }
 
 function render() {
