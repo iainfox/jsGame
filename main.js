@@ -40,6 +40,7 @@ function render() {
 }
 
 function loop() {
+	jsgame.event.clear();
 	update();
 	render();
 	requestAnimationFrame(loop);
