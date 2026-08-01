@@ -14,10 +14,12 @@ const braking = 0.3;
 const turnSpeed = 0.05;
 const drag = 0.985;
 
-function trianglePoints() {
-	const nose = [pos.x + size * Math.cos(angle), pos.y + size * Math.sin(angle)];
-	const backLeft = [pos.x + size * Math.cos(angle + 2.5), pos.y + size * Math.sin(angle + 2.5)];
-	const backRight = [pos.x + size * Math.cos(angle - 2.5), pos.y + size * Math.sin(angle - 2.5)];
+function triangleAt(offsetX, offsetY) {
+	const x = pos.x + offsetX;
+	const y = pos.y + offsetY;
+	const nose = [x + size * Math.cos(angle), y + size * Math.sin(angle)];
+	const backLeft = [x + size * Math.cos(angle + 2.5), y + size * Math.sin(angle + 2.5)];
+	const backRight = [x + size * Math.cos(angle - 2.5), y + size * Math.sin(angle - 2.5)];
 	return [nose, backLeft, backRight];
 }
 
@@ -32,11 +34,32 @@ function update() {
 
 	pos.x += Math.cos(angle) * speed;
 	pos.y += Math.sin(angle) * speed;
+
+	const w = window.innerWidth;
+	const h = window.innerHeight;
+	if (pos.x < 0) pos.x += w;
+	else if (pos.x > w) pos.x -= w;
+	if (pos.y < 0) pos.y += h;
+	else if (pos.y > h) pos.y -= h;
 }
 
 function render() {
-	surface.clearRect(0, 0, window.innerWidth, window.innerHeight);
-	jsgame.draw.polygon(surface, "#FF0000", trianglePoints());
+	const w = window.innerWidth;
+	const h = window.innerHeight;
+
+	surface.clearRect(0, 0, w, h);
+
+	jsgame.draw.polygon(surface, "#FF0000", triangleAt(0, 0));
+
+	if (pos.x < size) jsgame.draw.polygon(surface, "#FF0000", triangleAt(w, 0));
+	if (pos.x > w - size) jsgame.draw.polygon(surface, "#FF0000", triangleAt(-w, 0));
+	if (pos.y < size) jsgame.draw.polygon(surface, "#FF0000", triangleAt(0, h));
+	if (pos.y > h - size) jsgame.draw.polygon(surface, "#FF0000", triangleAt(0, -h));
+
+	if (pos.x < size && pos.y < size) jsgame.draw.polygon(surface, "#FF0000", triangleAt(w, h));
+	if (pos.x < size && pos.y > h - size) jsgame.draw.polygon(surface, "#FF0000", triangleAt(w, -h));
+	if (pos.x > w - size && pos.y < size) jsgame.draw.polygon(surface, "#FF0000", triangleAt(-w, h));
+	if (pos.x > w - size && pos.y > h - size) jsgame.draw.polygon(surface, "#FF0000", triangleAt(-w, -h));
 }
 
 function loop() {
