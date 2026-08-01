@@ -23,13 +23,17 @@ let prevSpace = false;
 let lastShot = 0;
 const bullets = [];
 
+const wingSpread = 2.6;
+const wingLength = size * 1.5;
+
 function triangleAt(offsetX, offsetY) {
 	const x = pos.x + offsetX;
 	const y = pos.y + offsetY;
 	const nose = [x + size * Math.cos(angle), y + size * Math.sin(angle)];
-	const backLeft = [x + size * Math.cos(angle + 2.5), y + size * Math.sin(angle + 2.5)];
-	const backRight = [x + size * Math.cos(angle - 2.5), y + size * Math.sin(angle - 2.5)];
-	return [nose, backLeft, backRight];
+	const backCenter = [x - size * Math.cos(angle), y - size * Math.sin(angle)];
+	const backLeft = [x + wingLength * Math.cos(angle + wingSpread), y + wingLength * Math.sin(angle + wingSpread)];
+	const backRight = [x + wingLength * Math.cos(angle - wingSpread), y + wingLength * Math.sin(angle - wingSpread)];
+	return [nose, backLeft, backCenter, backRight];
 }
 
 function update() {
@@ -92,17 +96,17 @@ function render() {
 		));
 	}
 
-	jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(0, 0));
+	jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(0, 0), 1);
 
-	if (pos.x < size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(w, 0));
-	if (pos.x > w - size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(-w, 0));
-	if (pos.y < size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(0, h));
-	if (pos.y > h - size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(0, -h));
+	if (pos.x < size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(w, 0), 1);
+	if (pos.x > w - size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(-w, 0), 1);
+	if (pos.y < size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(0, h), 1);
+	if (pos.y > h - size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(0, -h), 1);
 
-	if (pos.x < size && pos.y < size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(w, h));
-	if (pos.x < size && pos.y > h - size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(w, -h));
-	if (pos.x > w - size && pos.y < size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(-w, h));
-	if (pos.x > w - size && pos.y > h - size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(-w, -h));
+	if (pos.x < size && pos.y < size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(w, h), 1);
+	if (pos.x < size && pos.y > h - size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(w, -h), 1);
+	if (pos.x > w - size && pos.y < size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(-w, h), 1);
+	if (pos.x > w - size && pos.y > h - size) jsgame.draw.polygon(surface, "#FFFFFF", triangleAt(-w, -h), 1);
 }
 
 function loop() {
