@@ -3,6 +3,33 @@
 A JavaScript library inspired by Pygame.  
 This project recreates common Pygame functions for drawing and input handling.
 
+## Installation
+
+```sh
+npm install jsgame
+```
+
+You can also depend on it directly from this repository (as a git dependency) or
+use the bundled file at `dist/jsgame.js` in a plain `<script type="module">`.
+
+## Usage
+
+```js
+import { jsgame } from "jsgame";
+
+const surface = jsgame.init();
+
+jsgame.draw.rect(surface, "#FF0000", new jsgame.core.Rect([10, 10], [100, 50]));
+```
+
+To build from source:
+
+```sh
+npm install
+npm run build   # outputs dist/jsgame.js + source map
+npm run build:watch   # rebuild on file changes
+```
+
 ## Table of contents
 
 0. [Description](#jsgame)
