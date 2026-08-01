@@ -33,6 +33,7 @@ const spawnInterval = 2000;
 
 let asteroids = [];
 let lastSpawn = 0;
+let score = 0;
 
 const wingSpread = 2.6;
 const wingLength = size * 1.5;
@@ -102,6 +103,34 @@ function spawnInitialField() {
 	}
 }
 
+function splitAsteroid(a) {
+	const childSizes = { large: "medium", medium: "small", small: null };
+	const childSize = childSizes[a.sizeName];
+	if (childSize === null) return;
+	const count = 2 + Math.floor(Math.random() * 2);
+	for (let i = 0; i < count; i++) {
+		const dir = Math.random() * Math.PI * 2;
+		const boost = rand(0.8, 1.8);
+		spawnAsteroid(childSize, a.x, a.y, a.vx + Math.cos(dir) * boost, a.vy + Math.sin(dir) * boost);
+	}
+}
+
+function checkBulletCollisions() {
+	for (let i = bullets.length - 1; i >= 0; i--) {
+		const b = bullets[i];
+		for (let j = asteroids.length - 1; j >= 0; j--) {
+			const a = asteroids[j];
+			if (Math.hypot(b.x - a.x, b.y - a.y) < a.radius + bulletSize) {
+				bullets.splice(i, 1);
+				score += asteroidSizes[a.sizeName].points;
+				splitAsteroid(a);
+				asteroids.splice(j, 1);
+				break;
+			}
+		}
+	}
+}
+
 function resetGame() {
 	pos.x = window.innerWidth / 2;
 	pos.y = window.innerHeight / 2;
@@ -109,6 +138,7 @@ function resetGame() {
 	speed = 0;
 	bullets.length = 0;
 	asteroids.length = 0;
+	score = 0;
 	lastSpawn = performance.now();
 	spawnInitialField();
 }
@@ -184,6 +214,7 @@ function update() {
 
 	moveAsteroids();
 	spawnAsteroids(now);
+	checkBulletCollisions();
 
 	pos.x += Math.cos(angle) * speed;
 	pos.y += Math.sin(angle) * speed;
