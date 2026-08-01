@@ -20,6 +20,13 @@ import { jsgame } from "jsgame";
 const surface = jsgame.init();
 
 jsgame.draw.rect(surface, "#FF0000", new jsgame.core.Rect([10, 10], [100, 50]));
+
+// Keyboard input (pygame.key)
+const keys = jsgame.key.getPressed();
+if (keys.KeyW) player.moveInPlace(0, -speed);
+
+// Event queue (pygame.event)
+const events = jsgame.event.get();
 ```
 
 To build from source:
